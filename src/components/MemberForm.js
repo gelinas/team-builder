@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const MemberForm = props => {  
   console.log("props", props)
@@ -9,6 +9,10 @@ const MemberForm = props => {
   };
 
   const [member, setMember] = useState(emptyMember);
+
+  useEffect(() => {
+    setMember(props.memberToEdit)
+  }, [props.memberToEdit]);
 
   const handleChanges = e => {
     console.log(member);

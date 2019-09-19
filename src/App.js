@@ -7,16 +7,13 @@ import MemberForm from './components/MemberForm'
 import './App.css';
 
 function App() {
-  const emptyList = [
-    {
-      id: 0,
-      name: "",
-      email: "",
-      role: ""
-    }
-  ];
+  const [members, setMembers] = useState([]);
+  const [memberToEdit, setMemberToEdit] = useState({});
 
-  const [members, setMembers] = useState([])
+  const editMember = (input) => {
+    setMemberToEdit(input);
+  }
+
   const addMember = member => {
     setMembers([...members, member]);
   };
@@ -24,8 +21,8 @@ function App() {
 
   return (
     <div className="App">
-      <MemberList memberList={members} />
-      <MemberForm addMember={addMember} />
+      <MemberList memberList={members} editMember={editMember} />
+      <MemberForm addMember={addMember} memberToEdit={memberToEdit} />
     </div>
   );
 }
